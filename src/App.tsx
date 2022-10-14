@@ -1,6 +1,12 @@
+import { ThemeProvider } from "@mui/material";
+import { Router } from "./routes";
+import { lightTheme } from "./shared/styles/themes/themeLight";
+
 function App() {
   return (
-    <h1>oi</h1>
+    <ThemeProvider theme={lightTheme}>
+      <Router />
+    </ThemeProvider>
   )
 }
 
