@@ -23,6 +23,7 @@ export const FeedbackFilter = ({ setFeedbackType }: Props) => {
             id: 'uncontrolled-native',
           }}
 
+          // onChange={() => console.log('oi')}
           onChange={(e) => setFeedbackType(e.target.value.toString())}
         >
           <option value={FeedbackTypeEnum['POSITIVE']}>Positive</option>

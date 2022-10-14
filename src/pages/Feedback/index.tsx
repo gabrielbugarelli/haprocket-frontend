@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FeedbackTypeEnum } from "../../domain/enums/FeedbackTypeEnum";
 import { FeedbackFilter } from "./FeedbackFilter";
+import { FeedbackTableData } from "./FeedbackTableData";
 import { FeedbackButton, FilterContainer } from "./styles";
 
 export const Feedback = () => {
@@ -19,6 +20,8 @@ export const Feedback = () => {
         <hr />
         <FeedbackFilter setFeedbackType={setFeedbackType} />
       </FilterContainer>
+
+      <FeedbackTableData />
     </div>
   );
 }

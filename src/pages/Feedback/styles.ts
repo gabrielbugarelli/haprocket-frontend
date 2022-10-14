@@ -14,6 +14,8 @@ export const FilterContainer = styled('div')(() => `
 
   gap: 1rem;
 
+  margin-bottom: 1.5rem;
+
   hr {
     width: 100%;
     height: 2px;
