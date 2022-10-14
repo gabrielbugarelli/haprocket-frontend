@@ -3,12 +3,22 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import { FeedbackTypeEnum } from '../../../domain/enums/FeedbackTypeEnum';
+import { api } from '../../../service/api';
+import { Feedback } from '../../../domain/entities/Feedback';
+import { useFeedbacks } from '../../../shared/hooks/useFeedbacks';
 
-type Props = {
-  setFeedbackType(feedbackType: string): void;
-}
+export const FeedbackFilter = () => {
+  const { setFeedbacks } = useFeedbacks();
 
-export const FeedbackFilter = ({ setFeedbackType }: Props) => {
+  async function listAllFeedbacksByType(feedbackType: string): Promise<void> {
+    if (feedbackType === "ALL") {
+      const response: Feedback[] = await (await api.get('/feedbacks')).data;
+      setFeedbacks(response);
+    }
+
+    const response: Feedback[] = await (await api.get(`/feedbacks/feedback-type/${feedbackType.toUpperCase()}`)).data;
+    setFeedbacks(response);
+  }
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -22,7 +32,7 @@ export const FeedbackFilter = ({ setFeedbackType }: Props) => {
             name: 'feedbackType',
             id: 'uncontrolled-native',
           }}
-          onChange={(e) => setFeedbackType(e.target.value.toString())}
+          onChange={(e) => listAllFeedbacksByType(e.target.value)}
         >
           <option value={'ALL'}>All</option>
           <option value={FeedbackTypeEnum['POSITIVE']}>Positive</option>
