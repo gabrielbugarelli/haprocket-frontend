@@ -14,7 +14,7 @@ export const FeedbackFilter = ({ setFeedbackType }: Props) => {
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
         <InputLabel variant="filled" htmlFor="uncontrolled-native">
-          Filter by: All
+          Filter by:
         </InputLabel>
         <NativeSelect
           defaultValue={FeedbackTypeEnum['POSITIVE']}
@@ -22,10 +22,9 @@ export const FeedbackFilter = ({ setFeedbackType }: Props) => {
             name: 'feedbackType',
             id: 'uncontrolled-native',
           }}
-
-          // onChange={() => console.log('oi')}
           onChange={(e) => setFeedbackType(e.target.value.toString())}
         >
+          <option value={'ALL'}>All</option>
           <option value={FeedbackTypeEnum['POSITIVE']}>Positive</option>
           <option value={FeedbackTypeEnum['NEGATIVE']}>Negative</option>
         </NativeSelect>

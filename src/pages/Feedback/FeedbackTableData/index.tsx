@@ -5,23 +5,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useEffect, useState } from 'react';
-import { Feedback } from '../../../domain/entities/Feedback';
-import { api } from '../../../service/api';
 import { dateFormat } from '../../../shared/utils/dateFormat';
+import { useFeedbacks } from '../../../shared/hooks/useFeedbacks';
 
 export const FeedbackTableData = () => {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
-
-  async function loadData() {
-    const response: Feedback[] = await (await api.get('/feedbacks')).data;
-
-    setFeedbacks(response);
-  }
-
-  useEffect(() => {
-    loadData();
-  }, [feedbacks])
+  const { feedbacks } = useFeedbacks();
 
   return (
     <TableContainer component={Paper}>
