@@ -1,4 +1,4 @@
 export enum FeedbackTypeEnum {
-  POSITIVE = 'Positive',
-  NEGATIVE = 'Negative'
+  POSITIVE = 'POSITIVE',
+  NEGATIVE = 'NEGATIVE'
 }
