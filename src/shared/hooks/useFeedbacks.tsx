@@ -9,7 +9,7 @@ type FeedbacksProviderProps = {
 type FeedbacksContextData = {
   feedbacks: Feedback[];
   setFeedbacks: React.Dispatch<React.SetStateAction<Feedback[]>>;
-  listAllFeedbacks?: () => Promise<void>;
+  listAllFeedbacks: () => Promise<void>;
 }
 
 const FeedbacksContext = createContext<FeedbacksContextData>({} as FeedbacksContextData);
@@ -27,7 +27,7 @@ export const FeedbacksProvider = ({ children }: FeedbacksProviderProps) => {
   }, []);
 
   return (
-    <FeedbacksContext.Provider value={{ feedbacks, setFeedbacks }}>
+    <FeedbacksContext.Provider value={{ feedbacks, setFeedbacks, listAllFeedbacks }}>
       {children}
     </FeedbacksContext.Provider>
   );

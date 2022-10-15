@@ -27,7 +27,7 @@ export const FeedbackFilter = () => {
           Filter by:
         </InputLabel>
         <NativeSelect
-          defaultValue={FeedbackTypeEnum['POSITIVE']}
+          defaultValue={'All'}
           inputProps={{
             name: 'feedbackType',
             id: 'uncontrolled-native',
