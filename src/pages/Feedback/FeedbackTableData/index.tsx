@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { dateFormat } from '../../../shared/utils/dateFormat';
 import { useFeedbacks } from '../../../shared/hooks/useFeedbacks';
+import { MenuTools } from '../../../shared/components/MenuTools';
 
 export const FeedbackTableData = () => {
   const { feedbacks } = useFeedbacks();
@@ -32,8 +33,9 @@ export const FeedbackTableData = () => {
 
               <TableCell>
                 {dateFormat(feedback.createdAt!!!)}
-                <span>clique</span>
               </TableCell>
+
+              <MenuTools key={feedback.id} id={feedback.id} />
             </TableRow>
           ))}
         </TableBody>

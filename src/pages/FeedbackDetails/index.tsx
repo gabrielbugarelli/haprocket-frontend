@@ -17,6 +17,7 @@ export const FeedbackDetails = () => {
   const [userSelected, setUserSelected] = useState<User>({} as User);
   const [feedbackType, setFeedbackType] = useState<FeedbackTypeEnum>(FeedbackTypeEnum['POSITIVE']);
   const [feedbackDescription, setFeedbackDescription] = useState<string>('');
+  const [feedbackPayload, setFeedbackPayload] = useState<CreateFeedbackDTO>({} as CreateFeedbackDTO);
 
   async function getAllUsers() {
     const { data } = await api.get('/users');
@@ -24,20 +25,29 @@ export const FeedbackDetails = () => {
   }
 
   async function handleCreateFeedback() {
-    let payload: CreateFeedbackDTO = {
+    setFeedbackPayload({
       userId: userSelected.id,
       userName: userSelected.name,
       feedbackType: FeedbackTypeEnum[feedbackType],
       description: feedbackDescription,
-    }
+    });
 
-    await api.post(`/feedbacks/create/${JSON.stringify(payload)}`);
+    await api.post(`/feedbacks/create/${JSON.stringify(feedbackPayload)}`);
   }
 
-  function handleVeriryBreadcrumbs() {
+  async function handleVeriryBreadcrumbs() {
     if (location.pathname === '/feedback-detail') {
       setIsActive(true);
     }
+
+    if (location.state) {
+      await getFeedbackById(String(location.state));
+    }
+  }
+
+  async function getFeedbackById(id: string) {
+    const { data } = await api.get(`feedbacks/${id}`);
+    setFeedbackPayload(data);
   }
 
   useEffect(() => {
@@ -51,7 +61,7 @@ export const FeedbackDetails = () => {
         <InputLabel sx={{ alignSelf: 'start' }} size='small'>How do you want to send the feedback</InputLabel>
         <Dropdown
           value={userSelected.name}
-          defaultValue
+          defaultValue={feedbackPayload.userName ? feedbackPayload.userName : userSelected.name}
         >
           {users.map(user => {
             return (
@@ -67,7 +77,7 @@ export const FeedbackDetails = () => {
         <InputLabel sx={{ alignSelf: 'start' }} size='small'>Feedback Type</InputLabel>
         <Dropdown
           value={userSelected.name}
-          defaultValue
+          defaultValue={feedbackPayload.feedbackType ? feedbackPayload.feedbackType : 'POSITIVE'}
         >
           <MenuItem onClick={() => setFeedbackType(FeedbackTypeEnum['POSITIVE'])} value='POSITIVE'>
             Positive
@@ -82,7 +92,7 @@ export const FeedbackDetails = () => {
       <Container>
         <InputLabel sx={{ alignSelf: 'start' }} size='small'>Description</InputLabel>
         <TextArea
-          placeholder="Description..."
+          placeholder={feedbackPayload.description ? feedbackPayload.description : 'Description...'}
           onChange={(event) => setFeedbackDescription(event.target.value)}
         />
       </Container>
