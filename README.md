@@ -1,5 +1,5 @@
 <h1 align="center">
-   HapRocket API - The best feedback api on the planet.
+   HapRocket - The best feedback app on the planet.
 </h1>
 
 <p align="center">
