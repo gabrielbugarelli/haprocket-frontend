@@ -1,6 +1,7 @@
 import { InputLabel, MenuItem } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { CreateFeedbackDTO } from '../../domain/dtos/CreateFeedbackDTO';
 import { User } from '../../domain/entities/User';
 import { FeedbackTypeEnum } from '../../domain/enums/FeedbackTypeEnum';
@@ -32,6 +33,7 @@ export const FeedbackDetails = () => {
       description: feedbackDescription,
     });
 
+    toast.warn("No momento não é possível criar novos feedbacks 😢", { theme: 'colored' });
     await api.post(`/feedbacks/create/${JSON.stringify(feedbackPayload)}`);
   }
 

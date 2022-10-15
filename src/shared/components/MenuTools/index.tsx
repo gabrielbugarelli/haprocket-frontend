@@ -15,7 +15,7 @@ type Props = {
 
 export function MenuTools({ id }: Props) {
   const navigation = useNavigate();
-  const [action, setAction] = useState<string>('');
+  const [action, _] = useState<string>('');
 
   const { listAllFeedbacks } = useFeedbacks();
 
@@ -39,7 +39,7 @@ export function MenuTools({ id }: Props) {
     await api.delete(`/feedbacks/${id}`);
     await listAllFeedbacks();
 
-    toast('Feedback deleted!');
+    toast.success('Feedback deleted!', { theme: "colored" });
   }
 
   return (
