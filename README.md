@@ -27,6 +27,7 @@ A WEB APP to send feedback to other people. 🚀🚀
 
 ## Technologies
 - [Vite](https://vitejs.dev/)
+- [React](https://reactjs.org/)
 - [Emotion](https://emotion.sh/)
 - [Typescript](https://www.typescriptlang.org/)
 - [Material UI](https://mui.com/)
