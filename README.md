@@ -58,7 +58,7 @@ yarn dev
 ### After that, the project will be raised on http://127.0.0.1:5173/
 
 #### 5. Configure variables
-insert environment variable *VITE_BASE_URL_API* pointing to API address
+insert environment variable <strong>VITE_BASE_URL_API</strong> pointing to API address
 
 
 <h3>WARNING!!!!</h3>
